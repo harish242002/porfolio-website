@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/ccf516d89b.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- header part -->
+    <div id="header">
+      <div class="container">
+        <nav>
+          <h1><span>Personal</span> Portfolio</h1>
+          <ul id="sidemenu">
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+          </ul>
+          <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+          <p>web developer</p>
+          <h1>Hi,I'm <span>hari </span>prakash</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- about part -->
+    <div id="about">
+      <div class="container">
+        <div class="row">
+          <div class="about-col-1">
+            <img src="/images/user.jpg" />
+          </div>
+          <div class="about-col-2">
+            <h1 class="sub-title">About me</h1>
+            <ul>
+              <li>Recent Electronics and communication graduate,Intrested in Computer web development with a passion for developing scalable web applications and working across the full stack.</li>
+              <li>Specialize in creating sites for individuals and small businesses.</li>
+            </ul>
+
+            <div class="tab-titles">
+              <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+              <p class="tab-links" onclick="opentab('Language-known')">Language-known</p>
+              <p class="tab-links" onclick="opentab('Education')">Education</p>
+            </div>
+            <div class="tab-contents active-tab" id="skills">
+              <ul>
+                <li><span>UI/UX</span><br />Desining web/App interfaces</li>
+                <li><span>Web development</span><br />Web app development</li>
+                <li><span>Auto-cadd(Electrical)</span><br />3D Desinging for Circuit board</li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="Language-known">
+              <ul>
+                <li><span>Value added courses</span><br />DCA (Certificate No:181173)<br />J2EE (Certificate NO:12419)<br />Junior Grade Type writing(First class)<br />Administering office 365-Micrsoft Excel(with Microsoft Certificate)</li>
+                <li><span>Languages Known</span><br />C,C++<br />JAVA<br />HTML,CSS<br />Java Script</li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="Education">
+              <ul>
+                <li><span>2017</span><br />Secondary School Completed with 82%</li>
+                <li><span>2019</span><br />Higher Secondary School Completed with 52%</li>
+                <li><span>2019-2023</span><br />BE-ECE from SSMIET Dindigul</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contacts -->
+    <div id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="contact-left">
+            <h1 class="sub-title">Contact me</h1>
+            <p><i class="fa-solid fa-envelope"></i> mharishhp@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +91 8344492064</p>
+            <div class="social-icons">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+              <a href=""><i class="fa-brands fa-instagram"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <a href="images/Resume.pdf" download class="btn btn2">Download Resume</a>
+          </div>
+          <div class="contact-right">
+            <form name="submit-to-google-sheet">
+              <input type="text" name="Name" placeholder="Your Name" required />
+              <input type="email" name="Email" placeholder="Your Email" required />
+              <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+              <button type="submit" class="btn btn2">Submit</button>
+            </form>
+            <span id="msg"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------Scripts----------------- -->
+    <script>
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
+      function opentab(tabname) {
+        for (tablink of tablinks) {
+          tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+          tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+      }
+    </script>
+
+    <!-- menu close open -->
+    <script>
+      var sidemenus = document.getElementById("sidemenu");
+      function openmenu() {
+        sidemenus.style.right = "0";
+      }
+      function closemenu() {
+        sidemenus.style.right = "-200px";
+      }
+    </script>
+    <script>
+      const scriptURL = "https://script.google.com/macros/s/AKfycbx1mJ7CwM6JI0sX1gjOgG2NzY6wzvN4Sfsb77sPMWq32qyKitG95MqKRO-cki-jPVqSVQ/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            msg.innerHTML = "Message was sent successfully";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
