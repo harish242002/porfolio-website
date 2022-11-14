@@ -212,7 +212,7 @@ nav .fa-solid {
 /* ------------mobile phn----------- */
 @media only screen and (max-width: 600px) {
   #header {
-    background-image: url(/images/phn3.png);
+    background-image: url(./images/phn3.png);
   }
   .header-text {
     margin-top: 50%;
